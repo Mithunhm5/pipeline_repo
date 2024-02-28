@@ -1,10 +1,12 @@
 pipeline{
-    agent {
-        label 'jenkins_slave1'
-    }
+    agent none
+        
         stages{
         stage("Build"){
-            steps{
+          agent {
+            label 'slave1'
+          }  
+          steps{
                 sh 'sleep 5'
                    }
            
@@ -12,7 +14,7 @@ pipeline{
     
     
         stage("Test"){
-
+          agent any
             steps{
                 sh '''
                 #!/bin/bash
