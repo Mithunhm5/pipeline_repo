@@ -1,21 +1,23 @@
 pipeline{
     agent any
-    environment{
-        TEST="test_value"
-        TEST1="test_value1"
-    }
-        parameters{string (name:"PARAM_STRING",defaultValue:"input_param")
+    
+        parameters{string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
 
+        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+
+        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+    
         }
         triggers { cron(*/2 * * * *) }.
         stages{
             stage('Build'){
-                environment{
-                    Build_name ="my build"
-                }
                 steps{
                     sh'''
-                    echo $TEST $Build_name
+                    echo "$PARAM_STRING"
                     sleep 5
                     '''
                 }
