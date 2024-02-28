@@ -1,7 +1,8 @@
 pipeline{
     agent any
     
-        parameters{string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        parameters{
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
 
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
 
@@ -16,8 +17,8 @@ pipeline{
         stages{
             stage('Build'){
                 steps{
-                    sh'''
-                    echo "$PARAM_STRING"
+                    sh '''
+                    echo $PARAM_STRING
                     sleep 5
                     '''
                 }
