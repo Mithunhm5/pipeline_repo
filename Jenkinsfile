@@ -4,7 +4,7 @@ pipeline{
         TEST="test_value"
         TEST1="test_value1"
     }
-        parameters{
+        parameters{string (name:"PARAM_STRING",defaultValue:"input_param")
 
         }
         stages{
