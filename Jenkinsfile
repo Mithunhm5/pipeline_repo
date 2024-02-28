@@ -7,6 +7,7 @@ pipeline{
         parameters{string (name:"PARAM_STRING",defaultValue:"input_param")
 
         }
+        triggers { cron(*/2 * * * *) }.
         stages{
             stage('Build'){
                 environment{
@@ -22,7 +23,7 @@ pipeline{
         stage('Test'){
             steps{
                 script{
-                echo "${env.TEST}"
+                echo "${params.PARAM_STRING}"
             }
             
             }
