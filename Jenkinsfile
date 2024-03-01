@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages{
-        stage('Checkout'){
+        stage('Cread'){
             steps{
                 withCredentials([usernamePassword
                 (credentialsId:'test_up',usernameVariable:'USER',passwordVariable:'PASS')])
