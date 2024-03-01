@@ -8,15 +8,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([
-                    'GitSCM',
-                    branches: [[name: '*/master']],
-                    userRemoteConfigs: [[url: 'https://github.com/Mithunhm5/pipeline_repo.git']],
-                    credentialsId: 'jan_github' // Corrected spelling
-                ])
-            }
+               checkout([$class: 'GitSCM', branches: [[name: '*/main']],
+                          userRemoteConfigs: [[url: 'https://github.com/Mithunhm5/pipeline_repo.git'
+                          credentialsId: 'jan_github' ]]])
         }
-
+        }
         stage('Test') {
             steps {
                 sh '''
@@ -25,4 +21,5 @@ pipeline {
             }
         }
     }
-}
+    }
+
