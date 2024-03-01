@@ -8,7 +8,7 @@ pipeline {
             {
                 echo"$USER$PASS"
                 sh'''
-                echo"$USER$PASS"
+                echo "$USER  $PASS"
                 '''
 
             }
