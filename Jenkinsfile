@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout'){
             steps{
                 withCredentials([usernamePassword
-                (credentialsId:'test_up',usernameVariable:'USER',passwordVariable:'PASS')])
+                (credentialsId:'slave_ssh',usernameVariable:'USER',passwordVariable:'PASS')])
             {
                 echo"$USER$PASS"
                 sh'''
@@ -12,6 +12,17 @@ pipeline {
                 '''
 
             }
+
+        withCredentials([string
+                (credentialsId:'test_up',usernameVariable:'USER',)])
+            {
+                echo"$USER"
+                sh'''
+                echo "$USER"
+                '''
+
+
+
             }
         }
     }
