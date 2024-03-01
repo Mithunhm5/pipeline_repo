@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               checkout([$class: 'GitSCM', branches: [[name: '*/main']],
+               checkout([$class: 'GitSCM', 
+                          branches: [[name: '*/main']],
                           userRemoteConfigs: [[url: 'https://github.com/Mithunhm5/pipeline_repo.git'
                           credentialsId: 'jan_github' ]]])
         }
