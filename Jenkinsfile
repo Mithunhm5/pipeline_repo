@@ -13,20 +13,21 @@ pipeline{
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     
         }
-        triggers { cron(*/2 * * * *) }.
+        triggers { cron(*/5 * * * *) }.
         stages{
-            stage('Build'){
+            stage('checkout'){
                 steps{
-                    sh '''
-                    echo $PARAM_STRING
-                    sleep 5
-                    '''
+                    checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/Mithunhm5/pipeline_repo.git'
+                    credentialsID:'jan_github']]])
                 }
             }
         stage('Test'){
             steps{
-                script{
-                echo "${params.PARAM_STRING}"
+                sh '''
+                ls -lrt
+                '''
             }
             
             }
@@ -35,7 +36,7 @@ pipeline{
 
 
         }
-}
+
 
 
         
