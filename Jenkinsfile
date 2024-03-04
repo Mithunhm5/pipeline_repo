@@ -13,14 +13,7 @@ pipeline {
 
             }
 
-               withCredentials([string
-                (credentialsId:'slave_ssh',usernameVariable:'USER',)])
-            {
-                echo"$USER"
-                sh'''
-                echo "$USER"
-                '''
-            }
+
         }
     }
 }
